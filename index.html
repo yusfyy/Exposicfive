@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/exposlogowhite.png" type="image/png">
+    <title>Memory of Exposicfive</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="mobile.css" media="screen and (max-width: 480px)">
+</head>
+<body>
+    <div class="coloring"></div>
+    <img src="img/elementpmv/overlay shadow.png" id="overlay">
+<!-- NAVIGASI -->
+    <nav id="navigasi">
+        <img src="img/smanparkpng.png" class="btn1">
+        <img src="img/exposlogowhite.png" class="btn2">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#Memories1">Memories</a></li>
+            <li><a href="#Messages">Messages</a></li>
+        </ul>
+    </nav>
+<!-- HALAMAN UTAMA -->
+    <section id="HalamanUtama">
+        <div class="layer1">
+            <img src="img/exposlogo.PNG" class="logoexpos">
+            <div class="hudeskripsi">
+                <h1 class="Exposjudul">Exposicfive</h1>
+                <p class="exposdeskripsi">Kami adalah Exposicfive, kelas XII-V yang mungkin 
+                    <br>terlihat sangar, tapi penuh tawa dan kebersamaan.</p>
+            </div>
+            <a class="lihat" href="#Memories1">Lihat</a>
+        </div>
+        <!-- elements -->
+        <!-- <div class="klipfilmdiv">
+           <div class="klipfilm"></div>
+        </div> -->
+        <div class="klipfilmdiv">
+            <div class="kliptrack">
+                <div class="klipfilm"></div>
+                <div class="klipfilm"></div>
+            </div>
+        </div>
+
+         <div class="kasetdiv">
+             <img class="kaset" src="img/elementpmv/discvinyl.PNG">
+         </div>
+         <div class="kupukupudiv">
+            <img src="img/elementpmv/kupukupu.png"class="kupukupu">
+         </div>
+         <img src="img/elementpmv/overlaybawah.PNG" class="Lovutama">
+         <div class="thanksdiv">
+            <img src="img/elementpmv/thanks.png" class="thanks">
+         </div>
+         <div class="menarajamdiv">
+            <img src="img/elementpmv/menarajam.png" class="menarajam">
+         </div>
+    </section>
+
+<!-- MEMORIES 1 -->
+    <section id="Memories1">
+        <div class="layer2">
+            <!-- <h1 class="ourmemories">Our Memories</h1> -->
+             <img src="img/elementpmv/OurMemories.PNG" class="OurMemories">
+            
+            <div class="kelas11_1_div">
+                <img src="img/elementpmv/Kelas11_1.png" class="kelas11_1">
+                <h1>First Pic of Exposicfive</h1>
+            </div>
+            <div class="kelas11_2_div">
+                <img src="img/elementpmv/Kelas11_2.png" class="kelas11_2">
+                <h1>First Classmeet</h1>
+            </div>
+            <div class="kelas11_3_div">
+                <img src="img/elementpmv/Kelas11_2.png" class="kelas11_3">
+                <h1>Villa</h1>
+            </div>
+        </div>
+    </section>
+
+<!-- MEMORIES 2 -->
+    <section id="Memories2">
+    </section>
+
+<!-- MEMORIES 3 -->
+    <section id="Memories3">
+    </section>
+
+<!-- MESSAGES -->
+    <section id="Messages">
+    </section>
+
+
+<!-- JAVASCRIPT -->
+<script>
+let menarajam = document.querySelector('.menarajamdiv');
+let kaset = document.querySelector('.kasetdiv');
+let thanks = document.querySelector('.thanks');
+let kupukupu = document.querySelector('.kupukupudiv');
+let Lovutama = document.querySelector('.Lovutama');
+let klipfilm = document.querySelector('.klipfilmdiv');
+let ourmemories = document.querySelector('.OurMemories');
+let memories1 = document.getElementById('Memories1');
+let fotokelas11_1 = document.querySelector('.kelas11_1_div');
+let fotokelas11_2 = document.querySelector('.kelas11_2_div');
+let fotokelas11_3 = document.querySelector('.kelas11_3_div');
+
+let currentScroll = 0;
+let targetScroll = 0;
+let memoriesY = -200; // posisi awal turun 200px
+let Leftrotasi = 0;
+let Rightrotasi = 0;
+let Centerrotasi = 10;
+let kelasScale = 1;
+
+window.addEventListener('scroll', () => {
+    targetScroll = window.scrollY;
+});
+
+function smoothParallax() {
+
+    currentScroll += (targetScroll - currentScroll) * 0.04;
+
+    // ===============================
+    // ANIMASI ANIMASI HALAMAN UTAMA
+    // ===============================
+    Lovutama.style.transform = `translateY(${currentScroll * 0.2}px)`;
+    menarajam.style.transform = `translateY(${currentScroll * 0.5}px)`;
+
+    let scaleValue = 1 - currentScroll * 0.001;
+    if (scaleValue < 0.3) scaleValue = 0.3;
+
+    kaset.style.transform = `scale(${scaleValue})`;
+    kupukupu.style.transform = `scale(${scaleValue})`;
+    
+    thanks.style.transform = `translateY(${-currentScroll * 0.2}px)`;
+    klipfilm.style.transform = `translateX(${currentScroll * 0.4}px)`;
+
+
+    // ===============================
+    // SMOOTHING MEMORIES 1
+    // ===============================
+    if (memories1) {
+
+        let rect = memories1.getBoundingClientRect();
+        let windowHeight = window.innerHeight;
+
+        let progress = 1 - (rect.top / windowHeight);
+        progress = Math.max(0, Math.min(progress, 1));
+
+        let targetY = (1 - progress) * -200;
+
+        // smooth interpolation
+        memoriesY += (targetY - memoriesY) * 0.08;
+
+        ourmemories.style.transform = `translateY(${memoriesY}px)`;
+
+    }
+    // ===============================
+    // ANIMASI KELAS11_1_DIV
+    // ===============================
+    if (fotokelas11_1) {
+
+        let rect = memories1.getBoundingClientRect();
+        let windowHeight = window.innerHeight;
+
+        let progress = 1 - (rect.top / windowHeight);
+        progress = Math.max(0, Math.min(progress, 1));
+
+        let targetRotation = progress * 10; // dari 0 ke 10deg
+
+        // smooth interpolation
+        Rightrotasi += (targetRotation - Rightrotasi) * 0.08;
+
+        fotokelas11_1.style.transform = `rotate(${Rightrotasi}deg)`;
+    }
+    // ===============================
+    // ANIMASI KELAS11_2_DIV
+    // ===============================
+    if (fotokelas11_2) {
+        
+        let rect = memories1.getBoundingClientRect();
+        let windowHeight = window.innerHeight;
+        
+        let progress = 1 - (rect.top / windowHeight);
+        progress = Math.max(0, Math.min(progress, 1));
+        
+        let targetRotation = progress * -8; // dari 0 ke 10deg
+        
+        // smooth interpolation
+        Leftrotasi += (targetRotation - Leftrotasi) * 0.06;
+        
+        fotokelas11_2.style.transform = `rotate(${Leftrotasi}deg)`;
+    }
+    // ===============================
+    // ANIMASI KELAS11_3_DIV
+    // ===============================
+    if (fotokelas11_3) {
+
+        let rect = memories1.getBoundingClientRect();
+        let windowHeight = window.innerHeight;
+
+        let progress = 1 - (rect.top / windowHeight);
+        progress = Math.max(0, Math.min(progress, 1));
+
+        let targetRotation = -10 + (progress * 10); // 10 → 0
+
+        // smooth interpolation
+        Centerrotasi += (targetRotation - Centerrotasi) * 0.08;
+
+        fotokelas11_3.style.transform = `rotate(${Centerrotasi}deg)`;
+    }
+    
+    
+    
+    requestAnimationFrame(smoothParallax);
+}
+
+smoothParallax();
+
+// Reload
+window.history.scrollRestoration = "manual";
+
+window.addEventListener("load", () => {
+    window.scrollTo(0, 0);
+});
+</script>
+    
+</body>
+</html>

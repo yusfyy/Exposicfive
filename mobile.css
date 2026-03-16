@@ -1,0 +1,55 @@
+@media screen and (max-width: 480px){
+    /* NAVIGASI */
+    #navigasi ul {gap: .9em; font-size: .8em;}
+    .btn1 {height: auto; width: 2em; left: 3%;}
+    .btn2 {height: auto; width: 2.8em; right: 3%;}
+    /* Layer1 */
+    .logoexpos {
+        width: 70vw;
+    }
+    .hudeskripsi {
+        font-size: .7em;
+    }
+    /* Element */
+    .kasetdiv,.kupukupudiv {
+        height: 30vw;
+        width: 30vw;
+    }
+    .kupukupudiv {
+        top: 20vh;
+    }
+    .menarajamdiv {
+        height: 80vw;
+        width: 80vw;
+        bottom: 0vh;
+        right: -33vw;
+    }
+    .Lovutama {
+        height: 50vw;
+        width: 50vw;
+    }
+    .thanks {
+        top: 20vh;
+        right: 0;
+        height: 50vw;
+        width: 50vw;
+    }
+
+    .klipfilmdiv{
+        top: 5vh;
+        left: 0;
+        rotate: 0deg;
+        height: 20vh;
+        width: 100vw;
+    }
+
+    /* Memories1 */
+    .OurMemories {width: 80vw; top: 2%;}
+    .kelas11_1_div {
+        height: 35vw;
+        width: 35vw;
+        position: absolute;
+        top: 20vh;
+        left: 25vw;
+    }
+}
